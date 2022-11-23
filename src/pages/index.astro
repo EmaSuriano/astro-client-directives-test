@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Counter from '../components/Counter';
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <h1>Welcome to <span class="text-gradient">Astro</span></h1>
+
+    <br />
+    <h2><pre>no directive</pre></h2>
+    <p class="instructions">
+      <code>No JS, no interactive</code>
+      <Counter />
+    </p>
+
+    <br />
+    <h2><pre>client:load</pre></h2>
+    <p class="instructions">
+      <code>Loads JS as soon as possible</code>
+
+      <Counter client:load />
+    </p>
+
+    <br />
+    <h2><pre>client:idle</pre></h2>
+    <p class="instructions">
+      <code>Loads JS when rendering is over</code>
+
+      <Counter client:idle />
+    </p>
+
+    <br />
+    <h2><pre>client:visible</pre></h2>
+    <p class="instructions">
+      <code>Loads JS when button is visible by the user</code>
+
+      <Counter client:visible />
+    </p>
+
+    <br />
+    <h2><pre>client:media</pre></h2>
+    <p class="instructions">
+      <code>Loads JS when the media query (min-width: 680px) is valid</code>
+    </p>
+
+    <Counter client:media="(min-width: 680px)" />
+
+    <br />
+    <h2><pre>client:only</pre></h2>
+    <p class="instructions">
+      <code>Loads JS only in client (No SSR)</code>
+
+      <Counter client:only="react" />
+    </p>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 60ch;
+  }
+  
+	h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+  
+	.instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    border: 1px solid rgba(var(--accent), 25%);
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.4rem;
+  }
+
+  .instructions code {
+    font-size: 0.875em;
+    display: block;
+    width: fit-content;
+    margin-bottom: 8px;
+    font-weight: bold;
+    background: rgba(var(--accent), 12%);
+    color: rgb(var(--accent));
+    border-radius: 4px;
+    padding: 0.3em 0.45em;
+  }
+</style>
